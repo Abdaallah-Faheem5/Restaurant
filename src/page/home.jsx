@@ -9,12 +9,24 @@ const Home = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const API_URL = import.meta.env.VITE_SERVER_URL;
 
   // Get user data
   useEffect(() => {
     const userData = JSON.parse(localStorage.getItem('user') || '{}');
     setUser(userData);
+  }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 768) {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   // Fetch categories
@@ -62,7 +74,10 @@ const Home = () => {
     fetchMenuItems();
   }, [selectedCategory]);
 
+  const closeMobileMenu = () => setMobileMenuOpen(false);
+
   const handleLogout = () => {
+    closeMobileMenu();
     localStorage.clear();
     navigate('/');
   };
@@ -76,14 +91,25 @@ const Home = () => {
             <img src="/logo-icon.png" alt="Logo" className="logo-img" />
             <span>نكهة زمان</span>
           </div>
-          <ul className="nav-menu">
-            <li><a href="#home">الرئيسية</a></li>
-            <li><a href="#menu">القائمة</a></li>
+          <button
+            type="button"
+            className={`nav-toggle ${mobileMenuOpen ? 'open' : ''}`}
+            aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={mobileMenuOpen}
+            onClick={() => setMobileMenuOpen((prev) => !prev)}
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <ul className={`nav-menu ${mobileMenuOpen ? 'open' : ''}`}>
+            <li><a href="#home" onClick={closeMobileMenu}>الرئيسية</a></li>
+            <li><a href="#menu" onClick={closeMobileMenu}>القائمة</a></li>
             {user?.role === 'admin' && (
-              <li><button onClick={() => navigate('/admin')} className="nav-btn nav-admin">إدارة</button></li>
+              <li><button onClick={() => { closeMobileMenu(); navigate('/admin'); }} className="nav-btn nav-admin">إدارة</button></li>
             )}
             <li>
-              <button onClick={() => navigate('/orders')} className="nav-btn">
+              <button onClick={() => { closeMobileMenu(); navigate('/orders'); }} className="nav-btn">
                 {user?.role === 'waiter' ? 'كل الطلبات' : 'طلباتي'}
               </button>
             </li>
@@ -144,7 +170,7 @@ const Home = () => {
                     <p>{item.description}</p>
                     <div className="menu-footer">
                       <span className="price">{item.price} دينار</span>
-                      <button className="add-btn" onClick={() => navigate('/orders')}>اطلب الآن</button>
+                      <button className="add-btn" onClick={() => { closeMobileMenu(); navigate('/orders'); }}>اطلب الآن</button>
                     </div>
                   </div>
                 </div>
@@ -167,3 +193,4 @@ const Home = () => {
 
 
 export default Home;
+
