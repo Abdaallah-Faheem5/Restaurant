@@ -31,7 +31,7 @@ const Login = () => {
         axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.data.token}`;
         
         // Redirect to home
-        navigate('/home');
+        navigate('/');
       }
     } catch (err) {
       setError(

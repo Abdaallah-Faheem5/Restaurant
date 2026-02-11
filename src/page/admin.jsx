@@ -29,7 +29,7 @@ const Admin = () => {
   useEffect(() => {
     const userData = JSON.parse(localStorage.getItem('user') || '{}');
     if (userData.role !== 'admin') {
-      navigate('/home');
+      navigate('/');
       return;
     }
     setUser(userData);
@@ -266,7 +266,7 @@ const Admin = () => {
         <div className="admin-header-container">
           <h1>لوحة التحكم - الإدارة</h1>
           <div className="header-actions">
-            <button className="home-btn" onClick={() => navigate('/home')}>← العودة للرئيسية</button>
+            <button className="home-btn" onClick={() => navigate('/')}>← العودة للرئيسية</button>
             <button className="logout-btn" onClick={handleLogout}>تسجيل الخروج</button>
           </div>
         </div>

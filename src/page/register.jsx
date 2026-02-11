@@ -102,7 +102,7 @@ const Register = () => {
 
         // Redirect to home after 2 seconds
         setTimeout(() => {
-          navigate('/home');
+          navigate('/');
         }, 2000);
       }
     } catch (err) {

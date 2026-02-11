@@ -280,7 +280,7 @@ const Orders = () => {
           </p>
         </div>
         <div className="orders-header-actions">
-          <button className="orders-nav-btn" onClick={() => navigate('/home')}>
+          <button className="orders-nav-btn" onClick={() => navigate('/')}>
             العودة للرئيسية
           </button>
           <button className="orders-logout-btn" onClick={handleLogout}>
