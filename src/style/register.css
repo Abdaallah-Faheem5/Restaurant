@@ -1,0 +1,237 @@
+/* Container الأساسي */
+.register-page {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url('/login_back.png') no-repeat center center / cover;
+  overflow: hidden;
+  padding: 1rem 0;
+}
+
+/* طبقة تظليل للخلفية */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, #0000005f 0%, #00000084 100%);
+  z-index: 1;
+}
+
+
+.register-card {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 450px;
+  padding: 1rem 2rem;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(15px);
+  border: 1px solid #d4af3772;
+  border-radius: 24px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  text-align: center;
+}
+
+/* تصميم اللوجو */
+.logo-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.gold-circle {
+  width: 90px;
+  height: 90px;
+  
+  border-radius: 50%;
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+}
+
+.gold-circle img {
+  width: 100%;
+  height: 100%;
+  
+  border-radius: 50%;
+}
+
+/* النصوص */
+h1 {
+  color: #d4af37;
+  font-family: 'Tajawal', sans-serif;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+p {
+  color: #aaa;
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+}
+
+/* الحقول */
+.input-field {
+  margin-bottom: 1.2rem;
+  
+  position: relative;
+}
+
+.input-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  color: #d4af37;
+  opacity: 0.7;
+  pointer-events: none;
+  transition: 0.3s;
+}
+
+.input-field:focus-within .input-icon {
+  opacity: 1;
+  color: #d4af37;
+}
+
+.input-field input {
+  width: 100%;
+  padding: 12px 16px 12px 45px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  color: white;
+  outline: none;
+  transition: 0.3s;
+  text-align: right;
+  font-size: 0.95rem;
+}
+
+.input-field input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.input-field input:focus {
+  border-color: #d4af37;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.input-field input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* زر التسجيل */
+.register-btn {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(45deg, #d4af37, #b8860b);
+  border: none;
+  border-radius: 12px;
+  color: #111;
+  font-weight: bold;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: 0.4s;
+  margin-top: 1rem;
+  font-family: 'Tajawal', sans-serif;
+}
+
+.register-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(212, 175, 55, 0.4);
+}
+
+.register-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.register-btn:disabled:hover {
+  transform: none;
+  box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
+}
+
+/* روابط الأسفل */
+.form-footer {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  font-size: 0.9rem;
+}
+
+.form-footer span {
+  color: #aaa;
+}
+
+.form-footer a {
+  color: #d4af37;
+  text-decoration: none;
+  opacity: 0.8;
+  transition: 0.3s;
+}
+
+.form-footer a:hover {
+  opacity: 1;
+}
+
+/* رسائل الخطأ */
+.error-message {
+  background: rgba(255, 68, 68, 0.15);
+  border: 1px solid rgba(255, 68, 68, 0.5);
+  color: #ff6b6b;
+  padding: 12px 16px;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  text-align: right;
+  animation: slideDown 0.3s ease;
+}
+
+/* رسائل النجاح */
+.success-message {
+  background: rgba(76, 175, 80, 0.15);
+  border: 1px solid rgba(76, 175, 80, 0.5);
+  color: #4caf50;
+  padding: 12px 16px;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  text-align: right;
+  animation: slideDown 0.3s ease;
+}
+
+/* الرسوم المتحركة */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .register-card {
+    max-width: 95%;
+    padding: 2rem 1.5rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .input-field {
+    margin-right: 20px;
+  }
+
+  .register-btn {
+    padding: 12px;
+    font-size: 1rem;
+  }
+}
