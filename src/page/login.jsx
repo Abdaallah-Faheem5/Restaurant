@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../style/login.css';
 import axios from 'axios';
-
 const Login = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [loading, setLoading] = useState(false);
@@ -31,7 +30,7 @@ const Login = () => {
         axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.data.token}`;
         
         // Redirect to home
-        navigate('/');
+        navigate('/home');
       }
     } catch (err) {
       setError(
@@ -50,7 +49,7 @@ const Login = () => {
         {/* اللوجو الفخم */}
         <div className="logo-container">
           <div className="gold-circle">
-            <img src="./public/logo-icon.png" alt="Restaurant Logo" />
+            <img src="/logo-icon.png" alt="Restaurant Logo" />
           </div>
         </div>
 

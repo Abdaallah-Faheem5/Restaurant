@@ -124,7 +124,7 @@ const Orders = () => {
     const userData = JSON.parse(localStorage.getItem('user') || '{}');
 
     if (!token) {
-      navigate('/login');
+      navigate('/');
       return;
     }
 
@@ -185,7 +185,7 @@ const Orders = () => {
 
     const token = localStorage.getItem('token');
     if (!token) {
-      navigate('/login');
+      navigate('/');
       return;
     }
 
@@ -233,7 +233,7 @@ const Orders = () => {
   const markOrderDelivered = async (orderId) => {
     const token = localStorage.getItem('token');
     if (!token) {
-      navigate('/login');
+      navigate('/');
       return;
     }
 
@@ -263,7 +263,7 @@ const Orders = () => {
 
   const handleLogout = () => {
     localStorage.clear();
-    navigate('/login');
+    navigate('/');
   };
 
   return (
@@ -280,7 +280,7 @@ const Orders = () => {
           </p>
         </div>
         <div className="orders-header-actions">
-          <button className="orders-nav-btn" onClick={() => navigate('/')}>
+          <button className="orders-nav-btn" onClick={() => navigate('/home')}>
             العودة للرئيسية
           </button>
           <button className="orders-logout-btn" onClick={handleLogout}>

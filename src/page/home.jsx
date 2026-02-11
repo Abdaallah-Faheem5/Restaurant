@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../style/home.css';
 import axios from 'axios';
-
 const Home = () => {
   const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
@@ -65,7 +64,7 @@ const Home = () => {
 
   const handleLogout = () => {
     localStorage.clear();
-    navigate('/login');
+    navigate('/');
   };
 
   return (
@@ -74,7 +73,7 @@ const Home = () => {
       <nav className="navbar">
         <div className="navbar-container">
           <div className="navbar-logo">
-            <img src="./public/logo-icon.png" alt="Logo" className="logo-img" />
+            <img src="/logo-icon.png" alt="Logo" className="logo-img" />
             <span>نكهة زمان</span>
           </div>
           <ul className="nav-menu">
@@ -138,7 +137,7 @@ const Home = () => {
               {menuItems.map((item) => (
                 <div key={item._id} className="menu-card">
                   <div className="menu-image">
-                    {(item.imageUrl || item.image) && <img src={item.imageUrl || item.image} alt={item.name} />}
+                    {(item.imageUrl || item.image) && <img src={item.imageUrl || item.image || '/تبولة-.webp'} alt={item.name} />}
                   </div>
                   <div className="menu-info">
                     <h3>{item.name}</h3>

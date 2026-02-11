@@ -24,12 +24,14 @@ const Admin = () => {
   const [itemForm, setItemForm] = useState({ categoryId: '', name: '', nameEn: '', description: '', price: '', imageUrl: '' });
 
   const API_URL = import.meta.env.VITE_SERVER_URL;
+  const getApiErrorMessage = (error, fallback) =>
+    error?.response?.data?.message || fallback;
 
   // Check if user is admin
   useEffect(() => {
     const userData = JSON.parse(localStorage.getItem('user') || '{}');
     if (userData.role !== 'admin') {
-      navigate('/');
+      navigate('/home');
       return;
     }
     setUser(userData);
@@ -84,7 +86,7 @@ const Admin = () => {
         alert('تم إضافة الفئة بنجاح');
       }
     } catch (error) {
-      alert('خطأ في إضافة الفئة');
+      alert(getApiErrorMessage(error, 'خطأ في إضافة الفئة'));
       console.error(error);
     }
   };
@@ -104,7 +106,7 @@ const Admin = () => {
         alert('تم تحديث الفئة بنجاح');
       }
     } catch (error) {
-      alert('خطأ في تحديث الفئة');
+      alert(getApiErrorMessage(error, 'خطأ في تحديث الفئة'));
       console.error(error);
     }
   };
@@ -121,7 +123,7 @@ const Admin = () => {
         alert('تم حذف الفئة بنجاح');
       }
     } catch (error) {
-      alert('خطأ في حذف الفئة');
+      alert(getApiErrorMessage(error, 'خطأ في حذف الفئة'));
       console.error(error);
     }
   };
@@ -141,7 +143,7 @@ const Admin = () => {
         alert('تم إضافة الطبق بنجاح');
       }
     } catch (error) {
-      alert('خطأ في إضافة الطبق');
+      alert(getApiErrorMessage(error, 'خطأ في إضافة الطبق'));
       console.error(error);
     }
   };
@@ -161,7 +163,7 @@ const Admin = () => {
         alert('تم تحديث الطبق بنجاح');
       }
     } catch (error) {
-      alert('خطأ في تحديث الطبق');
+      alert(getApiErrorMessage(error, 'خطأ في تحديث الطبق'));
       console.error(error);
     }
   };
@@ -178,7 +180,7 @@ const Admin = () => {
         alert('تم حذف الطبق بنجاح');
       }
     } catch (error) {
-      alert('خطأ في حذف الطبق');
+      alert(getApiErrorMessage(error, 'خطأ في حذف الطبق'));
       console.error(error);
     }
   };
@@ -228,7 +230,7 @@ const Admin = () => {
         alert('تم رفع الصورة بنجاح');
       }
     } catch (error) {
-      alert('خطأ في رفع الصورة');
+      alert(getApiErrorMessage(error, 'خطأ في رفع الصورة'));
       console.error(error);
     } finally {
       setUploadingImage(false);
@@ -256,7 +258,7 @@ const Admin = () => {
 
   const handleLogout = () => {
     localStorage.clear();
-    navigate('/login');
+    navigate('/');
   };
 
   return (
@@ -266,7 +268,7 @@ const Admin = () => {
         <div className="admin-header-container">
           <h1>لوحة التحكم - الإدارة</h1>
           <div className="header-actions">
-            <button className="home-btn" onClick={() => navigate('/')}>← العودة للرئيسية</button>
+            <button className="home-btn" onClick={() => navigate('/home')}>← العودة للرئيسية</button>
             <button className="logout-btn" onClick={handleLogout}>تسجيل الخروج</button>
           </div>
         </div>

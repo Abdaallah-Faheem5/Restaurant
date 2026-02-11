@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../style/register.css';
 import axios from 'axios';
-
 const Register = () => {
   const [formData, setFormData] = useState({
     fullName: '',
@@ -102,7 +101,7 @@ const Register = () => {
 
         // Redirect to home after 2 seconds
         setTimeout(() => {
-          navigate('/');
+          navigate('/home');
         }, 2000);
       }
     } catch (err) {
@@ -122,7 +121,7 @@ const Register = () => {
         {/* اللوجو الفخم */}
         <div className="logo-container">
           <div className="gold-circle">
-            <img src="./public/logo-icon.png" alt="Restaurant Logo" />
+            <img src="/logo-icon.png" alt="Restaurant Logo" />
           </div>
         </div>
 
@@ -221,7 +220,7 @@ const Register = () => {
 
         <div className="form-footer">
           <span>هل لديك حساب؟</span>
-          <a href="#" onClick={(e) => { e.preventDefault(); navigate('/login'); }}>تسجيل الدخول</a>
+          <a href="#" onClick={(e) => { e.preventDefault(); navigate('/'); }}>تسجيل الدخول</a>
         </div>
       </div>
     </div>
