@@ -82,6 +82,11 @@ const Home = () => {
     navigate('/');
   };
 
+  const scrollToSection = (sectionId) => {
+    closeMobileMenu();
+    document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <div className="home-page">
       {/* Navbar */}
@@ -103,8 +108,8 @@ const Home = () => {
             <span></span>
           </button>
           <ul className={`nav-menu ${mobileMenuOpen ? 'open' : ''}`}>
-            <li><a href="#home" onClick={closeMobileMenu}>الرئيسية</a></li>
-            <li><a href="#menu" onClick={closeMobileMenu}>القائمة</a></li>
+            <li><a href="#home" onClick={(event) => { event.preventDefault(); scrollToSection('home'); }}>الرئيسية</a></li>
+            <li><a href="#menu" onClick={(event) => { event.preventDefault(); scrollToSection('menu'); }}>القائمة</a></li>
             {user?.role === 'admin' && (
               <li><button onClick={() => { closeMobileMenu(); navigate('/admin'); }} className="nav-btn nav-admin">إدارة</button></li>
             )}
